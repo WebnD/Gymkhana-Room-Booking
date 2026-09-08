@@ -5,8 +5,8 @@ import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
-import { AlertCircle, Lock, ArrowRight, Clock, ShieldCheck, Sparkles } from "lucide-react";
 import { User } from "@supabase/supabase-js";
+import { AlertCircle, Lock, ArrowRight, Clock, Sparkles, DoorOpen } from "lucide-react";
 
 function LandingCard() {
   const searchParams = useSearchParams();
@@ -57,30 +57,30 @@ function LandingCard() {
   };
 
   return (
-    <div className="w-full max-w-md bg-white/95 backdrop-blur-md rounded-3xl shadow-2xl p-8 sm:p-10 border border-white/20 text-slate-900 transition-all">
+    <div className="w-full max-w-md bg-white/95 backdrop-blur-md rounded-xl shadow-2xl p-7 sm:p-9 border border-white/20 text-slate-900 transition-all">
       {/* Header */}
-      <div className="mb-6">
+      <div className="mb-5">
         <div className="flex items-center gap-2 mb-2">
-          <span className="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 rounded-full">
-            Room Booking
+          <span className="px-2.5 py-0.5 text-[10px] font-black uppercase tracking-wider bg-blue-100 text-blue-800 rounded-md">
+            Facility Booking
           </span>
         </div>
-        <h2 className="text-2xl font-black tracking-tight text-slate-900 uppercase">
-          Meeting Room A
+        <h2 className="text-xl sm:text-2xl font-black tracking-tight text-slate-900 uppercase">
+          SAC Room Booking Portal
         </h2>
-        <div className="w-16 h-1 bg-slate-900 mt-2 mb-4 rounded-full"></div>
+        <div className="w-12 h-1 bg-slate-900 mt-2 mb-3 rounded-full"></div>
         <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
           Sign in with your{" "}
-          <span className="inline-block px-1.5 py-0.5 text-xs font-semibold bg-blue-100 text-blue-800 rounded">
+          <span className="inline-block px-1.5 py-0.2 text-xs font-semibold bg-blue-100 text-blue-800 rounded">
             @iitbbs.ac.in
           </span>{" "}
-          institutional account to view the live schedule and reserve rooms.
+          institutional account to view live schedules and reserve rooms.
         </p>
       </div>
 
       {/* Error alert */}
       {errorMessage && (
-        <div className="mb-6 p-3.5 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3 text-red-700 text-xs leading-relaxed animate-in fade-in">
+        <div className="mb-5 p-3 bg-red-50 border border-red-200 rounded-lg flex items-start gap-2.5 text-red-700 text-xs leading-relaxed animate-in fade-in">
           <AlertCircle className="w-4 h-4 text-red-500 mt-0.5 shrink-0" />
           <span>{errorMessage}</span>
         </div>
@@ -88,13 +88,13 @@ function LandingCard() {
 
       {/* If already logged in: Go to Dashboard Button */}
       {user ? (
-        <div className="space-y-4">
-          <div className="p-3.5 bg-blue-50 border border-blue-200 rounded-2xl text-xs text-blue-900 font-medium">
+        <div className="space-y-3.5">
+          <div className="p-3 bg-blue-50 border border-blue-200 rounded-lg text-xs text-blue-900 font-medium">
             Signed in as <strong>{user.email}</strong>
           </div>
           <Link
             href="/dashboard"
-            className="w-full flex items-center justify-center gap-2 py-3.5 px-6 rounded-2xl font-extrabold text-sm text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.99] transition-all shadow-md hover:shadow-lg"
+            className="w-full flex items-center justify-center gap-2 py-3 px-5 rounded-lg font-extrabold text-xs sm:text-sm text-white bg-blue-600 hover:bg-blue-700 active:scale-[0.99] transition-all shadow-md hover:shadow-lg"
           >
             <span>GO TO DASHBOARD</span>
             <ArrowRight className="w-4 h-4" />
@@ -105,12 +105,12 @@ function LandingCard() {
         <button
           onClick={handleGoogleSignIn}
           disabled={isLoading}
-          className="w-full relative flex items-center justify-center gap-3 py-3.5 px-6 border-2 border-slate-900 rounded-2xl font-bold text-sm text-slate-900 bg-white hover:bg-slate-50 active:scale-[0.99] transition-all shadow-md hover:shadow-lg disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
+          className="w-full relative flex items-center justify-center gap-3 py-3 px-5 border-2 border-slate-900 rounded-lg font-bold text-xs sm:text-sm text-slate-900 bg-white hover:bg-slate-50 active:scale-[0.99] transition-all shadow-sm hover:shadow-md disabled:opacity-60 disabled:cursor-not-allowed group cursor-pointer"
         >
           {isLoading ? (
-            <div className="w-5 h-5 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
+            <div className="w-4 h-4 border-2 border-slate-900 border-t-transparent rounded-full animate-spin" />
           ) : (
-            <svg className="w-5 h-5" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" viewBox="0 0 24 24">
               <path
                 fill="#4285F4"
                 d="M23.745 12.27c0-.7-.06-1.4-.19-2.07H12v4.51h6.6c-.29 1.52-1.14 2.82-2.4 3.68v3.05h3.88c2.27-2.09 3.66-5.17 3.66-9.17z"
@@ -134,7 +134,7 @@ function LandingCard() {
       )}
 
       {/* Dashed separator */}
-      <div className="my-6 border-t-2 border-dashed border-slate-200"></div>
+      <div className="my-5 border-t-2 border-dashed border-slate-200"></div>
 
       {/* Security guarantee */}
       <div className="flex items-center justify-center gap-2 text-slate-500 text-xs font-bold tracking-wider uppercase">
@@ -143,7 +143,7 @@ function LandingCard() {
       </div>
 
       {/* Policy disclaimer */}
-      <p className="text-[11px] text-slate-400 text-center mt-4 leading-normal">
+      <p className="text-[11px] text-slate-400 text-center mt-3 leading-normal">
         By signing in, you agree to the{" "}
         <span className="font-semibold text-slate-600">Booking Policy</span> and{" "}
         <span className="font-semibold text-slate-600">Terms of Service</span>.
@@ -173,30 +173,30 @@ export default function RootLandingPage() {
       </div>
 
       {/* Top Institutional Header */}
-      <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 flex items-center justify-between">
+      <header className="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-5 sm:pt-6 flex items-center justify-between">
         <div className="flex items-center gap-2 text-xs sm:text-sm font-extrabold tracking-wider text-slate-300 uppercase">
           <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
           <span>IIT Bhubaneswar • Facility Management</span>
         </div>
 
-        <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-400 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-full backdrop-blur-md">
+        <div className="hidden sm:flex items-center gap-2 text-xs font-bold text-slate-400 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-lg backdrop-blur-md">
           <span>Academic Year 2026–27</span>
         </div>
       </header>
 
       {/* Main Hero Content Area */}
-      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 my-auto">
+      <div className="relative z-10 w-full max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-10 flex flex-col lg:flex-row items-center justify-between gap-10 lg:gap-14 my-auto">
         
         {/* Left Side: Branding & SAC Identity */}
-        <div className="flex-1 text-white flex flex-col items-center lg:items-start text-center lg:text-left space-y-6">
+        <div className="flex-1 text-white flex flex-col items-center lg:items-start text-center lg:text-left space-y-5">
           
           {/* Gymkhana Crest without box */}
-          <div className="w-24 h-24 sm:w-28 sm:h-28 relative drop-shadow-2xl">
+          <div className="w-20 h-20 sm:w-24 sm:h-24 relative drop-shadow-2xl">
             <Image
               src="/Gymkhana logo.svg"
               alt="Gymkhana Crest"
-              width={112}
-              height={112}
+              width={96}
+              height={96}
               className="object-contain"
               priority
             />
@@ -204,22 +204,22 @@ export default function RootLandingPage() {
 
           {/* Titles: STUDENT ACTIVITY CENTRE in ONE single line */}
           <div className="space-y-1">
-            <h1 className="text-3xl sm:text-4xl lg:text-[42px] font-black tracking-tight uppercase leading-tight drop-shadow-lg whitespace-normal lg:whitespace-nowrap">
+            <h1 className="text-3xl sm:text-4xl lg:text-[40px] font-black tracking-tight uppercase leading-tight drop-shadow-lg whitespace-normal lg:whitespace-nowrap">
               Student Activity Centre
             </h1>
-            <p className="text-2xl sm:text-3xl font-black tracking-widest text-[#D4AF37] uppercase drop-shadow-md">
+            <p className="text-xl sm:text-2xl font-black tracking-widest text-[#D4AF37] uppercase drop-shadow-md">
               GYMKHANA
             </p>
           </div>
 
           {/* IIT Bhubaneswar Badge */}
-          <div className="inline-flex items-center gap-3 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-4 py-2 rounded-2xl shadow-xl">
-            <div className="w-7 h-7 relative shrink-0">
+          <div className="inline-flex items-center gap-2.5 bg-slate-900/90 border border-slate-700/80 backdrop-blur-md px-3.5 py-1.5 rounded-lg shadow-xl">
+            <div className="w-6 h-6 relative shrink-0">
               <Image
                 src="/IITBHUBANESWAR_logo.svg"
                 alt="IIT Bhubaneswar"
-                width={28}
-                height={28}
+                width={24}
+                height={24}
                 className="object-contain"
               />
             </div>
@@ -229,18 +229,18 @@ export default function RootLandingPage() {
           </div>
 
           {/* Feature Highlights */}
-          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-2 text-xs font-semibold text-slate-300">
-            <span className="inline-flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-xl backdrop-blur-sm">
-              <Clock className="w-3.5 h-3.5 text-blue-400" />
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 pt-1 text-xs font-semibold text-slate-300">
+            <span className="inline-flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+              <DoorOpen className="w-3.5 h-3.5 text-blue-400" />
+              Meeting Room & Multipurpose Hall
+            </span>
+            <span className="inline-flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-lg backdrop-blur-sm">
+              <Clock className="w-3.5 h-3.5 text-emerald-400" />
               09:00 AM – 03:00 AM
             </span>
-            <span className="inline-flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-xl backdrop-blur-sm">
-              <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
-              Exclusion Verified
-            </span>
-            <span className="inline-flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-xl backdrop-blur-sm">
+            <span className="inline-flex items-center gap-1.5 bg-slate-900/80 border border-slate-800 px-3 py-1.5 rounded-lg backdrop-blur-sm">
               <Sparkles className="w-3.5 h-3.5 text-amber-400" />
-              1-Hour Granularity
+              1-Hour Slots
             </span>
           </div>
 
@@ -250,7 +250,7 @@ export default function RootLandingPage() {
         <div className="flex-1 flex justify-center lg:justify-end w-full">
           <Suspense
             fallback={
-              <div className="w-full max-w-md h-80 bg-white/10 rounded-3xl animate-pulse" />
+              <div className="w-full max-w-md h-72 bg-white/10 rounded-xl animate-pulse" />
             }
           >
             <LandingCard />
@@ -259,23 +259,23 @@ export default function RootLandingPage() {
       </div>
 
       {/* Footer on Landing Page */}
-      <footer className="relative z-10 w-full bg-[#081225]/90 backdrop-blur-md border-t border-slate-800/80 py-5 px-4 sm:px-6 lg:px-8 mt-auto">
-        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+      <footer className="relative z-10 w-full bg-[#081225]/90 backdrop-blur-md border-t border-slate-800/80 py-4 px-4 sm:px-6 lg:px-8 mt-auto">
+        <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           
           <p>© {currentYear} Gymkhana, IIT Bhubaneswar. All rights reserved.</p>
 
-          <div className="flex items-center gap-2.5 bg-slate-900/90 border border-slate-800 px-3.5 py-1.5 rounded-full shadow-inner">
-            <div className="w-4 h-4 relative shrink-0">
+          <div className="flex items-center gap-2.5 bg-slate-900/90 border border-slate-800 px-3 py-1 rounded-full shadow-inner">
+            <div className="w-3.5 h-3.5 relative shrink-0">
               <Image
                 src="/WebnD.png"
                 alt="Web & Coding Club Logo"
-                width={16}
-                height={16}
+                width={14}
+                height={14}
                 className="object-contain rounded-full"
               />
             </div>
             <p className="text-[11px] font-medium text-slate-300">
-              Crafted by <span className="font-bold text-blue-400">WebD</span> • Web & Coding Club
+              Crafted by <span className="font-bold text-blue-400">WebnD</span> • Web & Design Society
             </p>
           </div>
 

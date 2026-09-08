@@ -68,7 +68,7 @@ export default function Navbar({ userEmail, userName, userAvatar }: NavbarProps)
         <nav className="flex items-center gap-1 sm:gap-2">
           <Link
             href="/dashboard"
-            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
               pathname === "/dashboard"
                 ? "text-blue-600 bg-blue-50 shadow-xs"
                 : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
@@ -81,7 +81,7 @@ export default function Navbar({ userEmail, userName, userAvatar }: NavbarProps)
           {canBook && (
             <Link
               href="/my-bookings"
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-bold transition-all ${
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs sm:text-sm font-bold transition-all ${
                 pathname === "/my-bookings"
                   ? "text-blue-600 bg-blue-50 shadow-xs"
                   : "text-slate-600 hover:text-slate-900 hover:bg-slate-100/70"
@@ -97,7 +97,7 @@ export default function Navbar({ userEmail, userName, userAvatar }: NavbarProps)
         <div className="relative flex items-center shrink-0">
           <button
             onClick={() => setShowMenu(!showMenu)}
-            className="flex items-center gap-2.5 p-1 sm:p-1.5 rounded-xl hover:bg-slate-100 transition-colors text-left focus:outline-none cursor-pointer"
+            className="flex items-center gap-2.5 p-1 sm:p-1.5 rounded-lg hover:bg-slate-100 transition-colors text-left focus:outline-none cursor-pointer"
             aria-expanded={showMenu}
           >
             <div className="hidden md:flex flex-col text-right">
@@ -144,7 +144,7 @@ export default function Navbar({ userEmail, userName, userAvatar }: NavbarProps)
                 className="fixed inset-0 z-40"
                 onClick={() => setShowMenu(false)}
               />
-              <div className="absolute right-0 top-12 z-50 w-60 bg-white rounded-2xl shadow-xl border border-slate-100 py-2 text-slate-800 animate-in fade-in zoom-in-95">
+              <div className="absolute right-0 top-12 z-50 w-60 bg-white rounded-xl shadow-xl border border-slate-100 py-2 text-slate-800 animate-in fade-in zoom-in-95">
                 <div className="px-4 py-2.5 border-b border-slate-100">
                   <div className="flex items-center justify-between mb-0.5">
                     <p className="text-xs font-bold text-slate-900 leading-tight">{displayName}</p>

@@ -5,20 +5,44 @@
 export interface RoomConfig {
   id: string;
   name: string;
+  shortName: string;
   capacity: number;
   amenities: string[];
   location: string;
   status: "available" | "maintenance" | "occupied";
+  description: string;
 }
 
-export const ROOM_CONFIG: RoomConfig = {
-  id: "meeting",
-  name: "Meeting Room A",
-  capacity: 20,
-  amenities: ["Projector", "Whiteboard", "High-speed Wi-Fi", "Air Conditioning"],
-  location: "Student Activity Centre (SAC), 1st Floor",
-  status: "available",
-};
+export const AVAILABLE_ROOMS: RoomConfig[] = [
+  {
+    id: "meeting",
+    name: "Meeting Room",
+    shortName: "Meeting",
+    capacity: 30,
+    amenities: ["Projector", "High-speed Wi-Fi", "Air Conditioning"],
+    location: "Student Activity Centre (SAC), 1st Floor",
+    status: "available",
+    description: "Ideal for formal society meetings, executive discussions, and core team planning.",
+  },
+  {
+    id: "multipurpose",
+    name: "Multipurpose Room",
+    shortName: "Multipurpose",
+    capacity: 80,
+    amenities: ["Audio System", "Air Conditioning", "Flexible Seating", "High-speed Wi-Fi"],
+    location: "Student Activity Centre (SAC), Ground Floor",
+    status: "available",
+    description: "Spacious hall designed for society workshops, informal meets, rehearsals, and large team gatherings.",
+  },
+];
+
+export const ROOM_CONFIG = AVAILABLE_ROOMS[0];
+
+export function getRoomConfig(roomId?: string): RoomConfig {
+  if (!roomId) return AVAILABLE_ROOMS[0];
+  const found = AVAILABLE_ROOMS.find((r) => r.id.toLowerCase() === roomId.toLowerCase());
+  return found || AVAILABLE_ROOMS[0];
+}
 
 // Operating hours: 9:00 AM to 3:00 AM (next day)
 // Total 18 hours per booking date = 18 slots of 1 hour each
