@@ -24,16 +24,6 @@ export const AVAILABLE_ROOMS: RoomConfig[] = [
     status: "available",
     description: "Ideal for formal society meetings, executive discussions, and core team planning.",
   },
-  {
-    id: "multipurpose",
-    name: "Multipurpose Room",
-    shortName: "Multipurpose",
-    capacity: 80,
-    amenities: ["Audio System", "Air Conditioning", "Flexible Seating", "High-speed Wi-Fi"],
-    location: "Student Activity Centre (SAC), Ground Floor",
-    status: "available",
-    description: "Spacious hall designed for society workshops, informal meets, rehearsals, and large team gatherings.",
-  },
 ];
 
 export const ROOM_CONFIG = AVAILABLE_ROOMS[0];
@@ -54,7 +44,7 @@ export const OPERATING_HOURS = {
   slotDurationMinutes: 60,
 };
 
-// Allow-list of authorized emails who can create bookings
+// Fallback list of authorized emails who can create bookings
 export const ALLOWED_BOOKER_EMAILS = [
   "secyweb.sg@iitbbs.ac.in",
   "secyfebs.sg@iitbbs.ac.in",
@@ -77,9 +67,37 @@ export const ALLOWED_BOOKER_EMAILS = [
   "coord.ashvamedha@iitbbs.ac.in",
 ];
 
+/**
+ * Checks whether an institutional email is authorized to reserve rooms.
+ * Matches any email starting with or containing secretary/leadership prefixes
+ * (e.g. secy*, gsec*, coord*, vpresident*, president*, convenor*, *.sg@iitbbs.ac.in, etc.)
+ * or present in the explicit allow-list.
+ */
 export function isAllowedBooker(email?: string | null): boolean {
   if (!email) return false;
   const normalized = email.trim().toLowerCase();
+
+  // Strict institutional domain check
+  if (!normalized.endsWith("@iitbbs.ac.in")) return false;
+
+  const username = normalized.split("@")[0];
+
+  // 1. Prefix and keyword pattern matching for Gymkhana & Society leadership:
+  // e.g. secy*, gsec*, coord*, vpresident*, president*, convenor*, *.sg, *.photosoc, *.soc
+  const isRolePattern =
+    username.startsWith("secy") ||
+    username.startsWith("gsec") ||
+    username.startsWith("coord") ||
+    username.startsWith("vpresident") ||
+    username.startsWith("president") ||
+    username.startsWith("convenor") ||
+    username.includes(".sg") ||
+    username.includes(".photosoc") ||
+    username.includes(".soc");
+
+  if (isRolePattern) return true;
+
+  // 2. Explicit allow-list fallback
   return ALLOWED_BOOKER_EMAILS.some((allowed) => allowed.toLowerCase() === normalized);
 }
 
