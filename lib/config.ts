@@ -94,6 +94,7 @@ export function isAllowedBooker(email?: string | null): boolean {
     username.startsWith("president") ||
     username.startsWith("convenor") ||
     username.includes(".sg") ||
+    username.includes(".club") ||
     username.includes(".photosoc") ||
     username.includes(".soc");
 
