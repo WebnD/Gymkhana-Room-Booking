@@ -65,6 +65,8 @@ export const ALLOWED_BOOKER_EMAILS = [
   "vpresident.sg@iitbbs.ac.in",
   "coord.pravaah@iitbbs.ac.in",
   "coord.ashvamedha@iitbbs.ac.in",
+  "iitbbs.panacea@gmail.com",
+  "quizclub@iitbbs.ac.in",
 ];
 
 /**
